@@ -1,0 +1,330 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.clock-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1em;
+    opacity: 0.9;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    padding: 25px 20px;
+    background: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.timezone-selector {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 1;
+    min-width: 250px;
+}
+
+.timezone-selector label {
+    font-weight: 600;
+    color: #333;
+    white-space: nowrap;
+}
+
+#timezoneInput {
+    padding: 10px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 0.95em;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    flex: 1;
+    min-width: 200px;
+}
+
+#timezoneInput:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.btn-add {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-add:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-add:active {
+    transform: translateY(0);
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+    padding: 10px 20px;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+}
+
+.btn-danger:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.clocks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 30px 20px;
+    min-height: 150px;
+}
+
+.clock-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    text-align: center;
+    animation: slideIn 0.4s ease;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.clock-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.1), transparent);
+    pointer-events: none;
+}
+
+.clock-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+}
+
+.timezone-name {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+}
+
+.time-display {
+    font-size: 2.8em;
+    font-weight: 300;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.time-display .period {
+    font-size: 0.6em;
+    display: block;
+    margin-top: 8px;
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 1px;
+}
+
+.date-display {
+    font-size: 0.95em;
+    opacity: 0.9;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.timezone-offset {
+    font-size: 0.85em;
+    opacity: 0.8;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.remove-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    position: relative;
+    z-index: 1;
+}
+
+.remove-btn:hover {
+    background: rgba(255, 0, 0, 0.6);
+    border-color: #ff0000;
+}
+
+.empty-state {
+    display: none;
+    text-align: center;
+    padding: 80px 20px;
+    color: #999;
+    font-size: 1.2em;
+}
+
+.empty-state.show {
+    display: block;
+}
+
+/* Different gradient backgrounds for variety */
+.clock-card:nth-child(1) {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.clock-card:nth-child(2) {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.clock-card:nth-child(3) {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.clock-card:nth-child(4) {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.clock-card:nth-child(5) {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.clock-card:nth-child(6) {
+    background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+}
+
+.clock-card:nth-child(n+7) {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .timezone-selector {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #timezoneInput {
+        width: 100%;
+    }
+
+    .btn-add {
+        width: 100%;
+    }
+
+    .btn-danger {
+        width: 100%;
+    }
+
+    .clocks-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .time-display {
+        font-size: 2.2em;
+    }
+}
+
+@media (max-width: 500px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .time-display {
+        font-size: 1.8em;
+        padding: 15px;
+    }
+
+    .timezone-name {
+        font-size: 1em;
+    }
+}
